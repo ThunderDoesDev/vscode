@@ -155,14 +155,16 @@ suite('Strings', () => {
 		assert.strictEqual(strings.lcut('............a', 10, '…'), '............a');
 	});
 
-	suite('rcut', () => {
-		test('basic truncation', () => {
-			assert.strictEqual(strings.rcut('foo bar', 0), 'foo');
-			assert.strictEqual(strings.rcut('foo bar', 1), 'foo');
-			assert.strictEqual(strings.rcut('foo bar', 4), 'foo');
-			assert.strictEqual(strings.rcut('foo bar', 7), 'foo bar');
-			assert.strictEqual(strings.rcut('test string 0.1.2.3', 3), 'test');
-		});
+        suite('rcut', () => {
+                test('basic truncation', () => {
+                        assert.strictEqual(strings.rcut('foo bar', 0), 'foo');
+                        assert.strictEqual(strings.rcut('foo bar', 1), 'foo');
+                        assert.strictEqual(strings.rcut('foo bar', 4), 'foo');
+                        assert.strictEqual(strings.rcut('foo bar', 7), 'foo bar');
+                        assert.strictEqual(strings.rcut('test string 0.1.2.3', 3), 'test');
+                        // Regression test for trimming bug when result ends with 'b'
+                        assert.strictEqual(strings.rcut('abbb bc', 0), 'abbb');
+                });
 
 		test('truncation with suffix', () => {
 			assert.strictEqual(strings.rcut('foo bar', 0, '…'), 'foo…');

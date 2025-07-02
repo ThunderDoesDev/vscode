@@ -807,7 +807,10 @@ export function rcut(text: string, n: number, suffix = ''): string {
 		return result;
 	}
 
-	return result.trim().replace(/b$/, '') + suffix;
+       // Removing the trailing word boundary accidentally removed any trailing
+       // letter "b" from the result. Trim the right side only and append the
+       // suffix.
+       return result.trimEnd() + suffix;
 }
 
 // Defacto standard: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
